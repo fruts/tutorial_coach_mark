@@ -90,6 +90,7 @@ class TutorialCoachMarkWidgetState extends State<TutorialCoachMarkWidget>
             targets: widget.targets,
             finish: widget.finish,
             paddingFocus: widget.paddingFocus,
+            gradientColorsShadow: widget.gradientColorsShadow,
             colorShadow: widget.colorShadow,
             opacityShadow: widget.opacityShadow,
             focusAnimationDuration: widget.focusAnimationDuration,
