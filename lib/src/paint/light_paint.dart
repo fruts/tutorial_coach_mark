@@ -50,11 +50,8 @@ class LightPaint extends CustomPainter {
     final Paint paint = Paint()..style = PaintingStyle.fill;
 
     if (gradientColorsShadow?.isNotEmpty ?? false) {
-      paint.shader = RadialGradient(colors: gradientColorsShadow!).createShader(
-        Rect.fromCircle(
-          center: positioned,
-          radius: radius,
-        ),
+      paint.shader = SweepGradient(colors: gradientColorsShadow!).createShader(
+        Rect.fromLTWH(0, 0, size.width, size.height),
       );
     } else {
       paint.color = colorShadow.withOpacity(opacityShadow);
