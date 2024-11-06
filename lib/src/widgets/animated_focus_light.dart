@@ -253,6 +253,7 @@ abstract class AnimatedFocusLightState extends State<AnimatedFocusLight>
         borderSide: target.borderSide,
         opacityShadow: widget.opacityShadow,
         gradientColorsShadow: widget.gradientColorsShadow,
+        positioned: _positioned,
       );
     } else {
       return LightPaint(
