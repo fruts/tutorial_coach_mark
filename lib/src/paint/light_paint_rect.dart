@@ -17,7 +17,7 @@ class LightPaintRect extends CustomPainter {
   LightPaintRect({
     required this.progress,
     required this.target,
-    this.colorShadow = Colors.black,
+    this.colorShadow = Colors.transparent,
     this.opacityShadow = 0.8,
     this.offset = 10,
     this.radius = 10,
@@ -103,9 +103,9 @@ class LightPaintRect extends CustomPainter {
       paint.shader = SweepGradient(colors: gradientColorsShadow!).createShader(
         Rect.fromLTWH(0, 0, size.width, size.height),
       );
-    } else {
-      paint.color = colorShadow.withOpacity(opacityShadow);
     }
+
+    paint.color = colorShadow.withOpacity(opacityShadow);
 
     canvas.drawPath(
       radius > 0

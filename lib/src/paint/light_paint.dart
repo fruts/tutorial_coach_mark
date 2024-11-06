@@ -16,7 +16,7 @@ class LightPaint extends CustomPainter {
     this.progress,
     this.positioned,
     this.sizeCircle, {
-    this.colorShadow = Colors.black,
+    this.colorShadow = Colors.transparent,
     this.opacityShadow = 0.8,
     this.borderSide,
     this.gradientColorsShadow,
@@ -50,12 +50,14 @@ class LightPaint extends CustomPainter {
     final Paint paint = Paint()..style = PaintingStyle.fill;
 
     if (gradientColorsShadow?.isNotEmpty ?? false) {
-      paint.shader = SweepGradient(colors: gradientColorsShadow!).createShader(
+      paint.shader = SweepGradient(
+        colors: gradientColorsShadow!,
+      ).createShader(
         Rect.fromLTWH(0, 0, size.width, size.height),
       );
-    } else {
-      paint.color = colorShadow.withOpacity(opacityShadow);
     }
+
+    paint.color = colorShadow.withOpacity(opacityShadow);
 
     canvas.drawPath(
       circleHole,
