@@ -21,6 +21,7 @@ class AnimatedFocusLight extends StatefulWidget {
   final Function()? finish;
   final double paddingFocus;
   final Color colorShadow;
+  final List<Color>? gradientColorsShadow;
   final double opacityShadow;
   final Duration? focusAnimationDuration;
   final Duration? unFocusAnimationDuration;
@@ -53,6 +54,7 @@ class AnimatedFocusLight extends StatefulWidget {
     this.rootOverlay = false,
     this.initialFocus = 0,
     this.backgroundSemanticLabel,
+    this.gradientColorsShadow,
   })  : assert(targets.length > 0),
         super(key: key);
 
@@ -250,6 +252,7 @@ abstract class AnimatedFocusLightState extends State<AnimatedFocusLight>
         radius: target.radius ?? 0,
         borderSide: target.borderSide,
         opacityShadow: widget.opacityShadow,
+        gradientColorsShadow: widget.gradientColorsShadow,
       );
     } else {
       return LightPaint(

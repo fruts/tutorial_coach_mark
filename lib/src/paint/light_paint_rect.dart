@@ -12,6 +12,7 @@ class LightPaintRect extends CustomPainter {
   final double offset;
   final double radius;
   final BorderSide? borderSide;
+  final List<Color>? gradientColorsShadow;
 
   LightPaintRect({
     required this.progress,
@@ -21,6 +22,7 @@ class LightPaintRect extends CustomPainter {
     this.offset = 10,
     this.radius = 10,
     this.borderSide,
+    this.gradientColorsShadow,
   }) : assert(opacityShadow >= 0 && opacityShadow <= 1);
 
   static Path _drawJustHole(
@@ -93,15 +95,22 @@ class LightPaintRect extends CustomPainter {
     double w = maxSize * (1 - progress) + target.size.width + offset;
 
     double h = maxSize * (1 - progress) + target.size.height + offset;
+    final Paint paint = Paint()
+      ..style = PaintingStyle.fill
+      ..strokeWidth = 4;
+
+    if (gradientColorsShadow?.isNotEmpty ?? false) {
+      paint.shader = LinearGradient(colors: gradientColorsShadow!)
+          .createShader(Rect.fromLTWH(0, 0, size.width, size.height));
+    } else {
+      paint.color = colorShadow.withOpacity(opacityShadow);
+    }
 
     canvas.drawPath(
       radius > 0
           ? RectClipper.rRectHolePath(size, x, y, w, h, radius)
           : RectClipper.rectHolePath(size, x, y, w, h),
-      Paint()
-        ..style = PaintingStyle.fill
-        ..color = colorShadow.withOpacity(opacityShadow)
-        ..strokeWidth = 4,
+      paint,
     );
     if (borderSide != null && borderSide?.style != BorderStyle.none) {
       canvas.drawPath(

@@ -36,6 +36,7 @@ class TutorialCoachMarkWidget extends StatefulWidget {
     this.imageFilter,
     this.backgroundSemanticLabel,
     this.initialFocus = 0,
+    this.gradientColorsShadow,
   })  : assert(targets.length > 0),
         super(key: key);
 
@@ -46,6 +47,7 @@ class TutorialCoachMarkWidget extends StatefulWidget {
   final FutureOr Function(TargetFocus)? clickOverlay;
   final Function()? finish;
   final Color colorShadow;
+  final List<Color>? gradientColorsShadow;
   final double opacityShadow;
   final double paddingFocus;
   final Function()? onClickSkip;

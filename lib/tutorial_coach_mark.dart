@@ -30,6 +30,7 @@ class TutorialCoachMark {
   final bool hideSkip;
   final bool useSafeArea;
   final Color colorShadow;
+  final List<Color>? gradientColorsShadow;
   final double opacityShadow;
   final GlobalKey<TutorialCoachMarkWidgetState> _widgetKey = GlobalKey();
   final Duration focusAnimationDuration;
@@ -68,6 +69,7 @@ class TutorialCoachMark {
     this.imageFilter,
     this.initialFocus = 0,
     this.backgroundSemanticLabel,
+    this.gradientColorsShadow,
   }) : assert(opacityShadow >= 0 && opacityShadow <= 1);
 
   OverlayEntry _buildOverlay({bool rootOverlay = false}) {
@@ -88,6 +90,7 @@ class TutorialCoachMark {
           hideSkip: hideSkip,
           useSafeArea: useSafeArea,
           colorShadow: colorShadow,
+          gradientColorsShadow: gradientColorsShadow,
           opacityShadow: opacityShadow,
           focusAnimationDuration: focusAnimationDuration,
           unFocusAnimationDuration: unFocusAnimationDuration,

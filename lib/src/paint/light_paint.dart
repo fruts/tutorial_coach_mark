@@ -10,6 +10,7 @@ class LightPaint extends CustomPainter {
   final Color colorShadow;
   final double opacityShadow;
   final BorderSide? borderSide;
+  final List<Color>? gradientColorsShadow;
 
   LightPaint(
     this.progress,
@@ -18,6 +19,7 @@ class LightPaint extends CustomPainter {
     this.colorShadow = Colors.black,
     this.opacityShadow = 0.8,
     this.borderSide,
+    this.gradientColorsShadow,
   }) : assert(opacityShadow >= 0 && opacityShadow <= 1);
 
   @override
@@ -45,11 +47,18 @@ class LightPaint extends CustomPainter {
       )
       ..close();
 
+    final Paint paint = Paint()..style = PaintingStyle.fill;
+
+    if (gradientColorsShadow?.isNotEmpty ?? false) {
+      paint.shader = LinearGradient(colors: gradientColorsShadow!)
+          .createShader(Rect.fromLTWH(0, 0, size.width, size.height));
+    } else {
+      paint.color = colorShadow.withOpacity(opacityShadow);
+    }
+
     canvas.drawPath(
       circleHole,
-      Paint()
-        ..style = PaintingStyle.fill
-        ..color = colorShadow.withOpacity(opacityShadow),
+      paint,
     );
     if (borderSide != null && borderSide?.style != BorderStyle.none) {
       canvas.drawPath(
